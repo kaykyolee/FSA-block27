@@ -1,8 +1,8 @@
-import {useState} from 'react'
+import {useState} from 'react';
 
 
-
-export default function SignUpForm (){
+export default function SignUpForm (props){
+    console.log(props)
     const [username, setUsername]=useState("");
     const [password, setPassword]=useState("");
     const [error, setError]=useState (null);
@@ -17,9 +17,12 @@ async function handleSubmit (event){
         })
         const result = await response.json ();
         console.log (result);
+        props.setToken(result.token);
     } catch (error){
         setError(error.message);
     }
+    
+    
 }
 
     return (
